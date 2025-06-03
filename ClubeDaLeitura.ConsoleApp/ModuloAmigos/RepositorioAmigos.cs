@@ -2,5 +2,9 @@
 {
     public class RepositorioAmigos
     {
+        public void CadastrarAmigo()
+        {
+
+        }
     }
 }
