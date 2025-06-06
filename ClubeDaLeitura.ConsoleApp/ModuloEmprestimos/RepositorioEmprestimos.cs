@@ -1,6 +1,6 @@
-﻿namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Funcionarios
+﻿using ClubeDaLeitura.ConsoleApp.Compartilhado;
+
+namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Funcionarios
 {
-    public class RepositorioEmprestimos
-    {
-    }
+    public class RepositorioEmprestimos : RepositorioBase;
 }

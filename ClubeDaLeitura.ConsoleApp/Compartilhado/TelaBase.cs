@@ -8,6 +8,7 @@
         protected TelaBase(string nomeEntidade, RepositorioBase repositorio)
         {
             this.nomeEntidade = nomeEntidade;
+            this.repositorio = repositorio;
         }
 
         public char ApresentarMenu()

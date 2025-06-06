@@ -1,5 +1,4 @@
 ﻿using ClubeDaLeitura.ConsoleApp.Compartilhado;
-using System.ComponentModel.Design;
 
 namespace ClubeDaLeitura.ConsoleApp
 {
@@ -9,9 +8,31 @@ namespace ClubeDaLeitura.ConsoleApp
         {
             TelaPrincipal telaPrincipal = new TelaPrincipal();
 
-            telaPrincipal.MenuPrincipal();
+            while (true)
+            {
+                telaPrincipal.MenuPrincipal();
+
+                TelaBase telaEscolhida = telaPrincipal.ObterTela();
+
+                if (telaEscolhida == null)
+                    break;
+
+                char opcaoEscolhida = telaEscolhida.ApresentarMenu();
+
+                if (opcaoEscolhida == 'S' || opcaoEscolhida == 's')
+                    break;
+
+                switch (opcaoEscolhida)
+                {
+                    case '1':
+                        telaEscolhida.CadastrarRegistro();
+                        break;
+
+                    case '2':
+                        telaEscolhida.CadastrarRegistro();
+                        break;
+                }
+            }
         }
-
-
     }
 }
