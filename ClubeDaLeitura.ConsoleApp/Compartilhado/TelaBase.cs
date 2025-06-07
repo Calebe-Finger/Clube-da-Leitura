@@ -21,6 +21,7 @@
             Console.WriteLine($"2 - Visualizar {nomeEntidade}s");
             Console.WriteLine($"3 - Editar {nomeEntidade}");
             Console.WriteLine($"4 - Excluir {nomeEntidade}");
+            Console.WriteLine($"5 - Voltar para o Menu Principal");
             Console.WriteLine("S - Sair");
             Console.WriteLine("----------------------------");
             Console.WriteLine("Digite uma opção válida: ");
@@ -31,6 +32,7 @@
 
         public void CadastrarRegistro()
         {
+            Console.Clear();
             Console.WriteLine("--------------------------------------");
             Console.WriteLine($"Cadastro de {nomeEntidade}");
             Console.WriteLine("--------------------------------------");
@@ -54,6 +56,13 @@
                 CadastrarRegistro();
                 return;
             }
+
+            repositorio.CadastrarRegistro(novoRegistro);
+
+            Console.WriteLine($"{nomeEntidade} cadastrado(a) com sucesso!");
+            Console.ReadLine();
+
+            ApresentarMenu();
         }
 
         public void EditarRegistro()
@@ -71,7 +80,7 @@
 
             repositorio.EditarRegistro(idSelecionado, registroAtualizado);
 
-            Console.WriteLine($"{nomeEntidade} editado com sucesso!");
+            Console.WriteLine($"{nomeEntidade} editado(a) com sucesso!");
             Console.ReadLine();
         }
 
@@ -90,7 +99,7 @@
 
             repositorio.ExcluirRegistro(idSelecionado);
 
-            Console.WriteLine($"Fabricante excluido com sucesso!");
+            Console.WriteLine($"{nomeEntidade} excluido(a) com sucesso!");
             Console.ReadLine();
         }
         protected abstract EntidadeBase ObterDados();

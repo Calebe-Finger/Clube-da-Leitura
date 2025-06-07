@@ -11,9 +11,9 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Amigos
 
         public Amigo(string nome, string nomeResponsavel, string telefone)
         {
-            this.Nome = nome;
-            this.NomeResponsavel = nomeResponsavel;
-            this.Telefone = telefone;
+            Nome = nome;
+            NomeResponsavel = nomeResponsavel;
+            Telefone = telefone;
         }
         public override void AtualizarRegistro(EntidadeBase registroAtualizado)
         {
@@ -40,7 +40,7 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Amigos
             else if (NomeResponsavel.Length < 3 || NomeResponsavel.Length > 100)
                 erros += "O campo \"Nome do Responsável\" deve conter entre 3 e 100 caracteres!\n";
 
-            if (!Regex.IsMatch(Telefone, @"^(55)?(?:([1-9]{2})?)(\d{4,5})-(\d{4})$"));
+            if (!Regex.IsMatch(Telefone, @"^\(?\d{2}\)?\s?(9\d{4}|\d{4})-?\d{4}$"))
                 erros += "O campo \"Telefone\" deve seguir o padrão (DDD) 99999-88888.";
 
             return erros;

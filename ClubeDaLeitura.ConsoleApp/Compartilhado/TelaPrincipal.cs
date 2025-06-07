@@ -1,4 +1,5 @@
 ﻿using ClubeDaLeitura.ConsoleApp.Modulo_de_Amigos;
+using ClubeDaLeitura.ConsoleApp.Modulo_de_Caixas;
 
 namespace ClubeDaLeitura.ConsoleApp.Compartilhado
 {
@@ -9,23 +10,30 @@ namespace ClubeDaLeitura.ConsoleApp.Compartilhado
         private RepositorioAmigo repositorioAmigo;
         private TelaAmigo telaAmigo;
 
+        private RepositorioCaixa repositorioCaixa;
+        private TelaCaixa telaCaixa;
+
         public TelaPrincipal()
         {
             repositorioAmigo = new RepositorioAmigo();
             telaAmigo = new TelaAmigo(repositorioAmigo);
+
+            repositorioCaixa = new RepositorioCaixa();
+            telaCaixa = new TelaCaixa(repositorioCaixa);
         }
 
         public void MenuPrincipal()
         {
+            Console.Clear();
             Console.WriteLine("-----------------------------------");
             Console.WriteLine("|        CLUBE DA LEITURA         |");
+            Console.WriteLine("-----------------------------------");
             Console.WriteLine("Qual módulo deseja acessar:");
             Console.WriteLine("1 - Módulo Amigos");
             Console.WriteLine("2 - Módulo de Caixas");
             Console.WriteLine("3 - Módulo de Revistas");
             Console.WriteLine("4 - Módulo de Empréstimos");
-            Console.WriteLine("S - Sair");
-            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("S - Sair\n");
             opcaoEscolhida = Console.ReadLine()[0];
         }
 
@@ -35,10 +43,10 @@ namespace ClubeDaLeitura.ConsoleApp.Compartilhado
                 return telaAmigo;
 
             else if (opcaoEscolhida == '2')
-                return telaChamado;
+                return telaCaixa;
 
             else if (opcaoEscolhida == '3')
-                return telaFabricante;
+                return null;
 
             else if (opcaoEscolhida == '4')
                 return null;

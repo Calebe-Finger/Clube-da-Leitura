@@ -29,7 +29,15 @@ namespace ClubeDaLeitura.ConsoleApp
                         break;
 
                     case '2':
-                        telaEscolhida.CadastrarRegistro();
+                        telaEscolhida.VisualizarRegistros();
+                        break;
+
+                    case '3':
+                        telaEscolhida.EditarRegistro();
+                        break;
+
+                    case '4':
+                        telaEscolhida.ExcluirRegistro();
                         break;
                 }
             }

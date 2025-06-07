@@ -4,11 +4,8 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Amigos
 {
     public class TelaAmigo : TelaBase
     {
-        private RepositorioAmigo repositAmigos;
-
         public TelaAmigo(RepositorioAmigo repositorio) : base ("Amigo", repositorio)
         {
-
         }
 
         public override void VisualizarRegistros()
@@ -19,22 +16,22 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Amigos
             Console.WriteLine("----------------------------");
 
             Console.WriteLine(
-                "{0, -4} | {1, -26} | {2, -16} | {3, -14}",
+                "{0, -6} | {1, -30} | {2, -30} | {3, -20}",
                 "Id", "Nome", "Nome do Responsável", "Telefone"
             );
 
-            EntidadeBase[] chamados = repositAmigos.SelecionarRegistros();
+            EntidadeBase[] amigos = repositorio.SelecionarRegistros();
 
-            for (int i = 0; i < chamados.Length; i++)
+            for (int i = 0; i < amigos.Length; i++)
             {
-                Amigo a = (Amigo)chamados[i];
+                Amigo a = (Amigo)amigos[i];
 
                 if (a == null)
                     continue;
 
                 Console.WriteLine(
-                    "{0, -4} | {1, -26} | {2, -16} | {3, -14}",
-                    a.id, a.Nome, a.NomeResponsavel, a.Telefone
+                    "{0, -6} | {1, -30} | {2, -30} | {3, -20}",
+                    a.Id, a.Nome, a.NomeResponsavel, a.Telefone
                 );
             }
             Console.ReadLine();
@@ -45,15 +42,15 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Amigos
             Console.WriteLine("Digite o nome do amigo: ");
             string nome = Console.ReadLine();
 
-            Console.WriteLine("Digite o nome do responsável do amigo: ");
+            Console.WriteLine("Digite o nome do responsável pelo amigo: ");
             string nomeResponsavel = Console.ReadLine();
 
-            Console.WriteLine("Digite o telefone do amigo: ");
+            Console.WriteLine("Digite o telefone do amigo ou responsável: ");
             string telefone = Console.ReadLine();
 
-            Amigo amigos = new Amigo(nome, nomeResponsavel, telefone);
+            Amigo amigo = new Amigo(nome, nomeResponsavel, telefone);
 
-            return amigos;
+            return amigo;
         }
     }
 }
