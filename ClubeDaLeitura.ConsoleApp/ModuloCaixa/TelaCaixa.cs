@@ -19,7 +19,7 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Caixas
 
             Console.WriteLine(
                 "{0, -6} | {1, -30} | {2, -30} | {3, -20}",
-                "Id", "Etiqueta", "Cor", "Dias de Emprestimo"
+                "Id", "Etiqueta", "Cor", "Dias de Empréstimo"
             );
 
             EntidadeBase[] caixas = repositorio.SelecionarRegistros();
@@ -41,18 +41,25 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Caixas
 
         protected override EntidadeBase ObterDados()
         {
-            Console.WriteLine("Qual o código da Etiqueta? ");
+            Console.WriteLine("Digite o código da Etiqueta: ");
             string etiqueta = Console.ReadLine();
 
-            Console.WriteLine("Qual a cor da caixa? ");
+            Console.WriteLine("Digite a cor da caixa: ");
             string cor = Console.ReadLine();
 
-            Console.WriteLine("Qual o número de dias de empréstimos da caixa? ");
-            int diasEmprestimo = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Digite o número de dias de empréstimo da caixa (opcional): ");
 
-            Caixa caixa = new Caixa(etiqueta, cor, diasEmprestimo);          
+            bool ConseguiuConverter = int.TryParse(Console.ReadLine(), out int diasEmprestimo);
 
-            return caixa;
+            Caixa caixa;
+
+            if (ConseguiuConverter)
+                caixa = new Caixa(etiqueta, cor, diasEmprestimo);
+
+            else
+                caixa = new Caixa(etiqueta, cor);
+
+                return caixa;
         }
     }
 }

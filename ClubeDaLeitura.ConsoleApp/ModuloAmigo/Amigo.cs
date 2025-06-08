@@ -17,11 +17,11 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Amigos
         }
         public override void AtualizarRegistro(EntidadeBase registroAtualizado)
         {
-            Amigo chamadoAtualizado = (Amigo)registroAtualizado;
+            Amigo AmigoAtualizado = (Amigo)registroAtualizado;
 
-            this.Nome = chamadoAtualizado.Nome;
-            this.NomeResponsavel = chamadoAtualizado.NomeResponsavel;
-            this.Telefone = chamadoAtualizado.Telefone;
+            Nome = AmigoAtualizado.Nome;
+            NomeResponsavel = AmigoAtualizado.NomeResponsavel;
+            Telefone = AmigoAtualizado.Telefone;
         }
 
         public override string Validar()
