@@ -30,7 +30,7 @@
             return OpcaoEscolhida;
         }
 
-        public void CadastrarRegistro()
+        public virtual void CadastrarRegistro()
         {
             Console.Clear();
             Console.WriteLine("--------------------------------------");
