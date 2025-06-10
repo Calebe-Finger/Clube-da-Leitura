@@ -65,7 +65,7 @@
             ApresentarMenu();
         }
 
-        public void EditarRegistro()
+        public virtual void EditarRegistro()
         {
             Console.WriteLine("--------------------------------------");
             Console.WriteLine($"Edição de {nomeEntidade}");

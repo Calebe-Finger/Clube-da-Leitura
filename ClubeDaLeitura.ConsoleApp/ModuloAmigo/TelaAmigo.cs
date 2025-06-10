@@ -83,7 +83,7 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Amigos
             ApresentarMenu();
         }
 
-        public void EditarRegistro()
+        public override void EditarRegistro()
         {
             Console.WriteLine("--------------------------------------");
             Console.WriteLine($"Edição de {nomeEntidade}");
@@ -94,7 +94,67 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Amigos
             Console.WriteLine("Digite o ID no registro que deseja editar: ");
             int idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-            EntidadeBase registroAtualizado = ObterDados();
+            Amigo registroAtualizado = (Amigo)ObterDados();
+
+            string erros = registroAtualizado.Validar();
+
+            if (erros.Length > 0)
+            {
+                Console.WriteLine();
+
+                Console.ForegroundColor = ConsoleColor.Red;      //muda a cor da fonte para vermelho
+                Console.WriteLine($"Erros: \n{erros}");
+                Console.ResetColor();                               //volta a cor para a original
+
+                Console.Write("\nDigite ENTER para cadastrar novamente...");
+                Console.ReadLine();
+
+                //Recursão: Quando um método chama ele mesmo
+                EditarRegistro();
+                return;
+            }
+
+            EntidadeBase[] registros = repositorio.SelecionarRegistros();
+
+            for (int i = 0; i < registros.Length; i++)
+            {
+                Amigo amigoRegistrado = (Amigo)registros[i];
+
+                if (amigoRegistrado == null)
+                    continue;
+
+                if (amigoRegistrado.Id != idSelecionado && 
+                    (amigoRegistrado.Nome == registroAtualizado.Nome))
+                {
+                    Console.WriteLine();
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Já foi cadastrado um amigo com esse nome!");
+                    Console.ResetColor();
+
+                    Console.Write("\nDigite ENTER para editar novamente...");
+                    Console.ReadLine();
+
+                    EditarRegistro();
+                    return;
+                }
+
+                if (amigoRegistrado.Id != idSelecionado && 
+                    (amigoRegistrado.Telefone == registroAtualizado.Telefone))
+                {
+                    Console.WriteLine();
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Já foi cadastrado um amigo com esse telefone!");
+                    Console.ResetColor();
+
+                    Console.Write("\nDigite ENTER para cadastrar novamente...");
+                    Console.ReadLine();
+
+                    CadastrarRegistro();
+                    return;
+                }
+            }
 
             repositorio.EditarRegistro(idSelecionado, registroAtualizado);
 
