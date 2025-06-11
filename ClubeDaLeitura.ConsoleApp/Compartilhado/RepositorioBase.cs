@@ -2,8 +2,8 @@
 {
     public class RepositorioBase
     {
-        private EntidadeBase[] registros = new EntidadeBase[100];
-        private int contadorRegistros = 0;
+        protected EntidadeBase[] registros = new EntidadeBase[100];
+        protected int contadorRegistros = 0;
 
         public void CadastrarRegistro(EntidadeBase novoRegistro)
         {

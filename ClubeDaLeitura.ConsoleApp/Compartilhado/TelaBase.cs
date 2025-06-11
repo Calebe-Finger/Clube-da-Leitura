@@ -11,7 +11,7 @@
             this.repositorio = repositorio;
         }
 
-        public char ApresentarMenu()
+        public virtual char ApresentarMenu()
         {
             Console.Clear();
             Console.WriteLine("----------------------------");

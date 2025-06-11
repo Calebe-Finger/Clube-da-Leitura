@@ -42,7 +42,7 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Revistas
             if (NumeroEdicao < 0)
                 erros += "O campo \"Número de Edição\" deve ser positívo.";
 
-            if (AnoPublicacao > DateTime.MinValue.Year || AnoPublicacao > DateTime.MaxValue.Year)
+            if (AnoPublicacao < DateTime.MinValue.Year || AnoPublicacao > DateTime.MaxValue.Year)
                 erros += "O campo \"Ano de Publicação\" deve conter um ano válido no passado e no presente.";
 
             if (Caixa == null)

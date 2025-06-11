@@ -22,7 +22,7 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Revistas
             Console.WriteLine("----------------------------");
 
             Console.WriteLine(
-                "{0, -6} | {1, -30} | {2, -30} | {3, -20} | {4, -20} | {5, -20} | {6, -20}",
+                "{0, -6} | {1, -30} | {2, -10} | {3, -10} | {4, -30} | {5, -10}",
                 "Id", "Título", "Número de Edição", "Ano de Publicação", "Caixa", "Status"
             );
 
@@ -36,7 +36,7 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Revistas
                     continue;
 
                 Console.WriteLine(
-                    "{0, -6} | {1, -30} | {2, -30} | {3, -20} | {4, -20} | {5, -20} | {6, -20}",
+                    "{0, -6} | {1, -30} | {2, -10} | {3, -10} | {4, -30} | {5, -10}",
                     r.Id, r.Titulo, r.NumeroEdicao, r.AnoPublicacao, r.Caixa.Etiqueta, r.Status
                 );
             }

@@ -41,7 +41,7 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Amigos
                 erros += "O campo \"Nome do Responsável\" deve conter entre 3 e 100 caracteres!\n";
 
             if (!Regex.IsMatch(Telefone, @"^\(?\d{2}\)?\s?(9\d{4}|\d{4})-?\d{4}$"))
-                erros += "O campo \"Telefone\" deve seguir o padrão (DDD) 99999-88888.";
+                erros += "O campo \"Telefone\" deve seguir o padrão (DDD) 9999-8888.";
 
             return erros;
         }

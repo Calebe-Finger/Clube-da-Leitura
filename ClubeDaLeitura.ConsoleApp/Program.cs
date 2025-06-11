@@ -39,6 +39,9 @@ namespace ClubeDaLeitura.ConsoleApp
                     case '4':
                         telaEscolhida.ExcluirRegistro();
                         break;
+
+                    case '5':
+                        continue;
                 }
             }
         }
