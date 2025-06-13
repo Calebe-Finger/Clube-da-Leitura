@@ -16,7 +16,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
                 if (emprestimoAtual == null)
                     continue;
 
-                if (emprestimoAtual.Status == "Disponível" || emprestimoAtual.Status == "Atrasado")
+                if (emprestimoAtual.Status == "Aberto" || emprestimoAtual.Status == "Atrasado")
                     contadorEmprestimosAtivos++;
             }
 
@@ -31,7 +31,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
                 if (emprestimoAtual == null)
                     continue;
 
-                if (emprestimoAtual.Status == "Disponível" || emprestimoAtual.Status == "Atrasado")
+                if (emprestimoAtual.Status == "Aberto" || emprestimoAtual.Status == "Atrasado")
                     emprestimosAtivos[contadorAuxiliar++] = (Emprestimo)registros[i];
             }
 
