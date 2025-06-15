@@ -11,6 +11,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
         public DateTime DataEmprestimo { get; set; }
         public DateTime DataDevolucao { get; set; }
         public string Status { get; set; }
+        public Multa Multa { get; set; }
 
         public Emprestimo(Amigo amigo, Revista revista)
         {
@@ -19,6 +20,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             DataEmprestimo = DateTime.Now;
             DataDevolucao = DataEmprestimo.AddDays(Revista.Caixa.DiasEmprestimo);
             Status = "Aberto";
+            Multa = null;
         }
 
         public override void AtualizarRegistro(EntidadeBase registroAtualizado)

@@ -130,15 +130,27 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 
                 string resposta = Console.ReadLine()!;
 
-                if (resposta.ToUpper() == "S")
-                {
-                    emprestimoSelecionado.Status = "Concluído";
-                    emprestimoSelecionado.Revista.Status = "Disponível";
+                if (resposta.ToUpper() != "S")
+                    return;
+                
+                emprestimoSelecionado.Status = "Concluído";
+                emprestimoSelecionado.Revista.Status = "Disponível";
 
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"\n{nomeEntidade} concluído com sucesso!");
-                    Console.ResetColor();
+                if (DateTime.Now > emprestimoSelecionado.DataDevolucao)
+                {
+                    TimeSpan diferencaDatas = DateTime.Now.Subtract(emprestimoSelecionado.DataDevolucao);
+
+                    decimal valorMulta = 2.00m * diferencaDatas.Days;
+
+                    Multa multa = new Multa(valorMulta);
+
+                    emprestimoSelecionado.Multa = multa;
                 }
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n{nomeEntidade} concluído com sucesso!");
+                Console.ResetColor();
+                
             }
         }
 

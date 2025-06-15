@@ -24,17 +24,14 @@ namespace ClubeDaLeitura.ConsoleApp.Compartilhado
         public TelaPrincipal()
         {
             repositorioAmigo = new RepositorioAmigo();
-            telaAmigo = new TelaAmigo(repositorioAmigo);
-
             repositorioCaixa = new RepositorioCaixa();
-            telaCaixa = new TelaCaixa(repositorioCaixa);
-
             repositorioRevista = new RepositorioRevista();
-            telaRevista = new TelaRevista(repositorioRevista, repositorioCaixa);
-
             repositorioEmprestimo = new RepositorioEmprestimo();
-            telaEmprestimo = new TelaEmprestimo(repositorioEmprestimo, repositorioAmigo, 
-                repositorioRevista);
+
+            telaAmigo = new TelaAmigo(repositorioAmigo, repositorioEmprestimo);
+            telaCaixa = new TelaCaixa(repositorioCaixa);
+            telaRevista = new TelaRevista(repositorioRevista, repositorioCaixa);
+            telaEmprestimo = new TelaEmprestimo(repositorioEmprestimo, repositorioAmigo, repositorioRevista);
         }
 
         public void MenuPrincipal()
