@@ -2,6 +2,7 @@
 using ClubeDaLeitura.ConsoleApp.Modulo_de_Caixas;
 using ClubeDaLeitura.ConsoleApp.Modulo_de_Revistas;
 using ClubeDaLeitura.ConsoleApp.ModuloEmprestimo;
+using ClubeDaLeitura.ConsoleApp.ModuloReservas;
 
 namespace ClubeDaLeitura.ConsoleApp.Compartilhado
 {
@@ -32,6 +33,15 @@ namespace ClubeDaLeitura.ConsoleApp.Compartilhado
             telaCaixa = new TelaCaixa(repositorioCaixa);
             telaRevista = new TelaRevista(repositorioRevista, repositorioCaixa);
             telaEmprestimo = new TelaEmprestimo(repositorioEmprestimo, repositorioAmigo, repositorioRevista);
+
+            Amigo amigo = new Amigo("Júnior", "Amanda", "49 99999-3333");
+            repositorioAmigo.CadastrarRegistro(amigo);
+
+            Caixa caixa = new Caixa("Ação", "Vermelha", 1);
+            repositorioCaixa.CadastrarRegistro(caixa);
+
+            Revista revista = new Revista("Superman", 150, 1995, caixa);
+            repositorioRevista.CadastrarRegistro(revista);
         }
 
         public void MenuPrincipal()

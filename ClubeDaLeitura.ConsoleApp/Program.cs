@@ -42,6 +42,10 @@ namespace ClubeDaLeitura.ConsoleApp
                             break;
 
                         case '4':
+                            telaEmprestimo.PagarMultas();
+                            break;
+
+                        case '5':
                             continue;
                     }
                 }

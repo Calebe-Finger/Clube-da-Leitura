@@ -192,7 +192,7 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Amigos
 
                 bool amigoTemMultaAtiva = false;
 
-                for (int j = 0; j <= emprestimos.Length; j++)
+                for (int j = 0; j < emprestimos.Length; j++)
                 {
                     Emprestimo e = (Emprestimo)emprestimos[j];
 
@@ -201,7 +201,7 @@ namespace ClubeDaLeitura.ConsoleApp.Modulo_de_Amigos
 
                     if (a == e.Amigo && e.Multa != null)
                     {
-                        if (!e.Multa.EstaPaga)
+                        if (!e.MultaPaga)
                             amigoTemMultaAtiva = true;
                     }
                 }

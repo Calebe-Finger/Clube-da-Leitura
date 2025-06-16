@@ -29,7 +29,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             Console.WriteLine($"1 - Cadastro de {nomeEntidade}");
             Console.WriteLine($"2 - Devolução de {nomeEntidade}");
             Console.WriteLine($"3 - Visualizar {nomeEntidade}s");
-            Console.WriteLine($"4 - Voltar para o Menu Principal");
+            Console.WriteLine($"4 - Pagar Multas de {nomeEntidade}s");
+            Console.WriteLine($"5 - Voltar para o Menu Principal");
             Console.WriteLine("S - Sair");
             Console.WriteLine("----------------------------");
             Console.WriteLine("Digite uma opção válida: ");
@@ -136,22 +137,53 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
                 emprestimoSelecionado.Status = "Concluído";
                 emprestimoSelecionado.Revista.Status = "Disponível";
 
-                if (DateTime.Now > emprestimoSelecionado.DataDevolucao)
-                {
-                    TimeSpan diferencaDatas = DateTime.Now.Subtract(emprestimoSelecionado.DataDevolucao);
-
-                    decimal valorMulta = 2.00m * diferencaDatas.Days;
-
-                    Multa multa = new Multa(valorMulta);
-
-                    emprestimoSelecionado.Multa = multa;
-                }
-
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"\n{nomeEntidade} concluído com sucesso!");
                 Console.ResetColor();
                 
             }
+        }
+
+        public void PagarMultas()
+        {
+            Console.Clear();
+            Console.WriteLine("--------------------------------------");
+            Console.WriteLine($"Pagamento de Multas de {nomeEntidade}");
+            Console.WriteLine("--------------------------------------");
+
+            VisualizarEmprestimosComMulta();
+
+            Console.WriteLine("\nDigite o ID do emprestimo com multas pendentes: ");
+            int idEmprestimo = Convert.ToInt32(Console.ReadLine());
+
+            Emprestimo emprestimoSelecionado = (Emprestimo)repositorio.SelecionarRegistroPorId(idEmprestimo);
+
+            if (emprestimoSelecionado == null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("O emprestimo selecionado não existe!");
+                Console.ResetColor();
+
+                Console.WriteLine("\n Digite ENTER para continuar...");
+                Console.ReadLine();
+
+                return;
+            }
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("\nDeseja confirmar o pagamento da multa? (S/N): ");
+            Console.ResetColor();
+
+            string resposta = Console.ReadLine()!;
+
+            if (resposta.ToUpper() != "S")
+                return;
+
+            emprestimoSelecionado.MultaPaga = true;
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\nPagamento de multa de {nomeEntidade} concluído com sucesso!");
+            Console.ResetColor();
         }
 
         private void VisualizarEmprestimosAtivos()
@@ -188,6 +220,41 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             Console.ReadLine();
         }
 
+        private void VisualizarEmprestimosComMulta()
+        {
+            Console.WriteLine("Visualização de Empréstimos com Multa");
+
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "{0, -5} | {1, -15} | {2, -15} | {3, -20} | {4, -25} | {5, -20}",
+                "Id", "Amigo", "Revista", "Data do Empréstimo", "Data Prev. Devolução", "Valor da multa"
+            );
+
+            EntidadeBase[] emprestimosComMulta = repositorioEmprestimo.SelecionarEmprestimosComMulta();
+
+            for (int i = 0; i < emprestimosComMulta.Length; i++)
+            {
+                Emprestimo e = (Emprestimo)emprestimosComMulta[i];
+
+                if (e == null)
+                    continue;
+
+                if (e.Status == "Atrasado")
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+
+                Console.WriteLine(
+                 "{0, -5} | {1, -15} | {2, -15} | {3, -20} | {4, -25} | {5, -20}",
+                    e.Id, e.Amigo.Nome, e.Revista.Titulo, e.DataEmprestimo.ToShortDateString(), 
+                    e.DataDevolucao.ToShortDateString(), e.Multa.Valor.ToString("C2")
+                );
+
+                Console.ResetColor();
+            }
+
+            Console.WriteLine();
+        }
+
         public override void VisualizarRegistros()
         {
             Console.Clear();
@@ -196,7 +263,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             Console.WriteLine("----------------------------");
 
             Console.WriteLine(
-                "{0, -6} | {1, -30} | {2, -30} | {3, -10} | {4, -10} | {5, -10}",
+                "{0, -6} | {1, -20} | {2, -20} | {3, -10} | {4, -10} | {5, -10}",
                 "Id", "Amigo", "Revista", "Data de Emprestimo", "Data de Devolução", "Status"
             );
 
@@ -213,13 +280,15 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
 
                 Console.WriteLine(
-                    "{0, -6} | {1, -30} | {2, -30} | {3, -10} | {4, -10} | {5, -10}",
+                    "{0, -6} | {1, -20} | {2, -230} | {3, -10} | {4, -10} | {5, -10}",
                     e.Id, e.Amigo.Nome, e.Revista.Titulo, e.DataEmprestimo.ToShortTimeString(), 
                     e.DataDevolucao.ToShortTimeString(), e.Status
                 );
 
                 Console.ResetColor();
             }
+
+            Console.ReadLine();
         }
 
         protected override EntidadeBase ObterDados()
