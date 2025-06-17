@@ -22,17 +22,22 @@ namespace ClubeDaLeitura.ConsoleApp.Compartilhado
         private RepositorioEmprestimo repositorioEmprestimo;
         private TelaEmprestimo telaEmprestimo;
 
+        private RepositorioReserva repositorioReserva;
+        private TelaReserva telaReserva;
+
         public TelaPrincipal()
         {
             repositorioAmigo = new RepositorioAmigo();
             repositorioCaixa = new RepositorioCaixa();
             repositorioRevista = new RepositorioRevista();
             repositorioEmprestimo = new RepositorioEmprestimo();
+            repositorioReserva = new RepositorioReserva();
 
             telaAmigo = new TelaAmigo(repositorioAmigo, repositorioEmprestimo);
             telaCaixa = new TelaCaixa(repositorioCaixa);
             telaRevista = new TelaRevista(repositorioRevista, repositorioCaixa);
             telaEmprestimo = new TelaEmprestimo(repositorioEmprestimo, repositorioAmigo, repositorioRevista);
+            telaReserva = new TelaReserva(repositorioReserva, repositorioAmigo, repositorioRevista);
 
             Amigo amigo = new Amigo("Júnior", "Amanda", "49 99999-3333");
             repositorioAmigo.CadastrarRegistro(amigo);
@@ -42,6 +47,10 @@ namespace ClubeDaLeitura.ConsoleApp.Compartilhado
 
             Revista revista = new Revista("Superman", 150, 1995, caixa);
             repositorioRevista.CadastrarRegistro(revista);
+
+            Reserva reserva = new Reserva(amigo, revista);
+            reserva.Iniciar();
+            repositorioReserva.CadastrarRegistro(reserva);
         }
 
         public void MenuPrincipal()
@@ -55,6 +64,7 @@ namespace ClubeDaLeitura.ConsoleApp.Compartilhado
             Console.WriteLine("2 - Módulo de Caixas");
             Console.WriteLine("3 - Módulo de Revistas");
             Console.WriteLine("4 - Módulo de Empréstimos");
+            Console.WriteLine("4 - Módulo de Reservas");
             Console.WriteLine("S - Sair\n");
             opcaoEscolhida = Console.ReadLine()[0];
         }
@@ -72,6 +82,9 @@ namespace ClubeDaLeitura.ConsoleApp.Compartilhado
 
             else if (opcaoEscolhida == '4')
                 return telaEmprestimo;
+
+            else if (opcaoEscolhida == '5')
+                return telaReserva;
 
             return null;
         }

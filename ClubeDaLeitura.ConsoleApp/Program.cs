@@ -1,5 +1,6 @@
 ﻿using ClubeDaLeitura.ConsoleApp.Compartilhado;
 using ClubeDaLeitura.ConsoleApp.ModuloEmprestimo;
+using ClubeDaLeitura.ConsoleApp.ModuloReservas;
 
 namespace ClubeDaLeitura.ConsoleApp
 {
@@ -46,6 +47,29 @@ namespace ClubeDaLeitura.ConsoleApp
                             break;
 
                         case '5':
+                            continue;
+                    }
+                }
+
+                else if (telaEscolhida is TelaReserva)
+                {
+                    TelaReserva telaReserva = (TelaReserva)telaEscolhida;
+
+                    switch (opcaoEscolhida)
+                    {
+                        case '1':
+                            telaReserva.CadastrarReserva();
+                            break;
+
+                        case '2':
+                            telaReserva.CancelarReserva();
+                            break;
+
+                        case '3':
+                            telaReserva.VisualizarRegistros();
+                            break;
+
+                        case '4':
                             continue;
                     }
                 }
