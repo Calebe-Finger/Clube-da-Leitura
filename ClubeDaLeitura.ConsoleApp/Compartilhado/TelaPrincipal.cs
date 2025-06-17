@@ -64,7 +64,7 @@ namespace ClubeDaLeitura.ConsoleApp.Compartilhado
             Console.WriteLine("2 - Módulo de Caixas");
             Console.WriteLine("3 - Módulo de Revistas");
             Console.WriteLine("4 - Módulo de Empréstimos");
-            Console.WriteLine("4 - Módulo de Reservas");
+            Console.WriteLine("5 - Módulo de Reservas");
             Console.WriteLine("S - Sair\n");
             opcaoEscolhida = Console.ReadLine()[0];
         }
